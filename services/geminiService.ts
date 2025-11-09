@@ -26,7 +26,7 @@ export const editImageWithGemini = async (imageFile: File, prompt: string): Prom
       parts: [imagePart, textPart],
     },
     config: {
-      responseModalities: [Modality.IMAGE, Modality.TEXT],
+      responseModalities: [Modality.IMAGE],
     },
   });
 
@@ -44,9 +44,7 @@ export const editImageWithGemini = async (imageFile: File, prompt: string): Prom
     }
   }
 
-  if (!imageUrl) {
-      throw new Error("API did not return an image. It might have refused the request.");
-  }
-  
+  // By not throwing an error if imageUrl is null, we allow the app to display
+  // potential text responses from the model (e.g., safety refusals).
   return { imageUrl, text };
 };
