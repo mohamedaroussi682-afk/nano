@@ -13,11 +13,12 @@ const fileToGenerativePart = async (file: File) => {
 };
 
 export const editImageWithGemini = async (imageFile: File, prompt: string): Promise<{imageUrl: string | null, text: string | null}> => {
-  if (!process.env.API_KEY) {
-    throw new Error("AIzaSyDHjMQ70HFrd1C2inQPfI-lpHksgHXUSM0");
+  const API_KEY = "AIzaSyDHjMQ70HFrd1C2inQPfI-lpHksgHXUSM0";
+  if (!API_KEY) {
+    throw new Error("API_KEY is not defined.");
   }
 
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: API_KEY });
   const imagePart = await fileToGenerativePart(imageFile);
   const textPart = { text: prompt };
 
