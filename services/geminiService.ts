@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Modality } from "@google/genai";
 
 const fileToGenerativePart = async (file: File) => {
@@ -13,17 +12,16 @@ const fileToGenerativePart = async (file: File) => {
 };
 
 export const editImageWithGemini = async (imageFile: File, prompt: string): Promise<{imageUrl: string | null, text: string | null}> => {
-  const API_KEY = "AIzaSyDHjMQ70HFrd1C2inQPfI-lpHksgHXUSM0";
-  if (!API_KEY) {
-    throw new Error("API_KEY is not defined.");
+  if (!process.env.API_KEY) {
+    throw new Error("API_KEY is not set in environment variables.");
   }
 
-  const ai = new GoogleGenAI({ apiKey: API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   const imagePart = await fileToGenerativePart(imageFile);
   const textPart = { text: prompt };
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.5-flash-image-preview',
+    model: 'gemini-2.5-flash-image',
     contents: {
       parts: [imagePart, textPart],
     },
