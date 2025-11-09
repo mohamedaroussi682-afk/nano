@@ -1,0 +1,5 @@
+{
+  "name": "Gemini Image Editor",
+  "description": "An AI-powered image editor using Gemini. Upload an image, provide a text prompt, and let the AI modify your image. Inspired by nano-banana.",
+  "requestFramePermissions": []
+}
