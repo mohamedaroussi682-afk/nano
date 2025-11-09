@@ -13,7 +13,7 @@ const fileToGenerativePart = async (file: File) => {
 
 export const editImageWithGemini = async (imageFile: File, prompt: string): Promise<{imageUrl: string | null, text: string | null}> => {
   if (!process.env.API_KEY) {
-    throw new Error("API_KEY is not set in environment variables.");
+    throw new Error("AIzaSyBQkkqAmSDSygS49_YVMScoxctBdufVpXA");
   }
 
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
